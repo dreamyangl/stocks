@@ -1,0 +1,4 @@
+matplotlib==3.3.2
+schedule==0.6.0
+tushare==1.2.62
+DingDingBot==2.0
