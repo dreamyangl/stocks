@@ -20,6 +20,12 @@ import settings
 from query.mechanismInfo import custom_stocks_streage
 
 if __name__ == '__main__':
+    # pd.set_option('display.unicode.ambiguous_as_wide', True)
+    # pd.set_option('display.unicode.east_asian_width', True)
+    # # 显示所有列
+    # pd.set_option('display.max_columns', None)
+    # # 显示所有行
+    # pd.set_option('display.max_rows', None)
     settings.init()
     pd.set_option('display.float_format', lambda x: '%.2f' % x)
     EXEC_TIME_MECHANISMINFO = "21:00"
