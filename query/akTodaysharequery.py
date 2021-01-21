@@ -42,9 +42,10 @@ def executeTodayAk():
 
 def isNotify():
     time = datetime.datetime.now()
-    if time.hour > 11 and time.minute > 30 and time.hour < 13:
+    # 二进制与 必须全部满足
+    if time.hour >= 11 & time.minute > 30 & time.hour <= 13:
         return False
-    # 下午三点到9点不查询
+    # 下午三点到9点不查询    逻辑or 一个满足直接返回
     if time.hour >=15 or time.hour < 9:
         return False
     return True
@@ -60,3 +61,7 @@ if __name__ == '__main__':
     #                     columns=['A', 'B', 'C'])
     # print(data)
     # print(data.sum())
+
+    stock_zh_a_daily_qfq_df = ak.stock_zh_a_daily(symbol="sz000002", start_date="20210120", end_date="20210121",
+                                                  adjust="qfq")
+    print(stock_zh_a_daily_qfq_df)
