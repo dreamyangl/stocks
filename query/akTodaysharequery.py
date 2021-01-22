@@ -38,12 +38,12 @@ def executeTodayAk():
         return
     data = ak.stock_individual_fund_flow_rank(indicator="今日")
     data = data.drop(data[(data['主力净流入-净额'] == "-")].index)
-    data = data[(data['涨跌幅'] < 9) & (~data['名称'].str.contains('ST'))]
+    data = data[(data['涨跌幅'] < 9.5) & (~data['名称'].str.contains('ST'))]
     data['主力净流入-净额'] = data['主力净流入-净额'].astype('float64')
     data['主力净流入-净占比'] = data['主力净流入-净占比'].astype('float64')
     streage = {
-        '今日主力净买入排序前30 字段:代码 名称 主力净流入-净额 主力净流入-净占比 涨跌幅 大单净流入-净占比 超大单净流入-净占比': mainNetInflow,
-        '涨跌幅，超大单排序前30 字段:代码 名称 主力净流入-净额 主力净流入-净占比 涨跌幅 大单净流入-净占比 超大单净流入-净占比': up,
+        '今日主力净买入排序前30 字段:代码 名称 主力净流入-净额 超大单净流入-净占比 涨跌幅 大单净流入-净占比 主力净流入-净占比': mainNetInflow,
+        '涨跌幅，超大单排序前30 字段:代码 名称 主力净流入-净额 超大单净流入-净占比 涨跌幅 大单净流入-净占比 主力净流入-净占比': up,
     }
     for item, fuc in streage.items():
         mec = fuc(data)
@@ -53,12 +53,14 @@ def executeTodayAk():
 
 
 def isNotify():
-    time = datetime.datetime.now()
-    # 二进制与 必须全部满足
-    if (time.hour >= 11) & (time.minute > 30) & (time.hour <= 13):
+    now = datetime.datetime.now()
+    amStartTime = datetime.datetime.strptime(str(datetime.datetime.now().date()) + '11:30', '%Y-%m-%d%H:%M')
+    amEndTime = datetime.datetime.strptime(str(datetime.datetime.now().date()) + '13:00', '%Y-%m-%d%H:%M')
+    pmStartTime = datetime.datetime.strptime(str(datetime.datetime.now().date()) + '15:00', '%Y-%m-%d%H:%M')
+    pmEndTime = datetime.datetime.strptime(str(datetime.datetime.now().date()) + '9:15', '%Y-%m-%d%H:%M')
+    if now > amStartTime and now < amEndTime:
         return False
-    # 下午三点到9点不查询    逻辑or 一个满足直接返回
-    if (time.hour >= 15) or (time.hour < 9):
+    if now > pmStartTime or now < pmEndTime:
         return False
     return True
 
