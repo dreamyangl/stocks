@@ -24,7 +24,7 @@ def mainNetInflow(data):
 
 def up(data):
     list = []
-    data = data.sort_values('涨跌幅', ascending=False).head(10)
+    data = data.sort_values('涨跌幅', ascending=False).head(20)
     data = data.sort_values('超大单净流入-净占比', ascending=False)
     data = data[['代码', '名称', '主力净流入-净额', '大单净流入-净占比', '超大单净流入-净占比', '涨跌幅', '主力净流入-净占比', ]]
     data.to_csv('./up.csv')
