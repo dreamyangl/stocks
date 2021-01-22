@@ -64,4 +64,5 @@ def testJob():
 
 if __name__ == '__main__':
     # queryJGTJ()
+    settings.init()
     executeAk()
