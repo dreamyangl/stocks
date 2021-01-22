@@ -20,8 +20,10 @@ def execute():
 
 if __name__ == '__main__':
     settings.init()
-    execute()
+    # execute()
     # settings.init()
     # pro = ts.pro_api(settings.TOKEN)
     # df = pro.suspend_d(suspend_type='R', trade_date='20210118')
     # print(df)
+    df = ts.get_today_ticks('600460')
+    print(df.tail(10))

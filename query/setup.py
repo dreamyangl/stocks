@@ -33,7 +33,7 @@ if __name__ == '__main__':
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeAk)
     EXEC_TIME_SUSPEND = "08:30"
     schedule.every().days.at(EXEC_TIME_SUSPEND).do(execute)
-    schedule.every(2).minutes.do(executeTodayAk)
+    schedule.every(1).minutes.do(executeTodayAk)
     while True:
         schedule.run_pending()
         time.sleep(30)
