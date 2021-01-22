@@ -55,20 +55,21 @@ def executeTodayAk():
 def isNotify():
     time = datetime.datetime.now()
     # 二进制与 必须全部满足
-    if time.hour >= 11 & time.minute > 30 & time.hour <= 13:
+    if (time.hour >= 11) & (time.minute > 30) & (time.hour <= 13):
         return False
     # 下午三点到9点不查询    逻辑or 一个满足直接返回
-    if time.hour >= 15 or time.hour < 9:
+    if (time.hour >= 15) or (time.hour < 9):
         return False
     return True
 
 
 if __name__ == '__main__':
     settings.init()
+    isNotify()
     # pd.set_option('display.float_format', lambda x: '%.2f' % x)
     # executeTodayAk()
     # print(isNotify())
-    executeTodayAk()
+    # executeTodayAk()
     # index = pd.date_range('1/1/2000', periods=8)
     # data = pd.DataFrame(np.random.randn(8, 3), index=index,
     #                     columns=['A', 'B', 'C'])
