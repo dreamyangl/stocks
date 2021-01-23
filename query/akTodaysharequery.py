@@ -1,6 +1,7 @@
 import datetime
 
 import akshare as ak
+import tushare as ts
 
 # 603565
 # df = ak.stock_zh_a_new().sort_values('amount',ascending=False).head(50)
@@ -17,7 +18,7 @@ def mainNetInflow(data):
     list = []
     data = data.sort_values('主力净流入-净额', ascending=False)
     data = data[['代码', '名称', '主力净流入-净额', '大单净流入-净占比', '超大单净流入-净占比', '涨跌幅', '主力净流入-净占比', ]].head(30)
-    data.to_csv('./todaydata.csv')
+    data.to_csv('../data/todaydata.csv')
     list.append(data)
     return list
 
@@ -27,18 +28,19 @@ def up(data):
     data = data.sort_values('涨跌幅', ascending=False).head(20)
     data = data.sort_values('超大单净流入-净占比', ascending=False)
     data = data[['代码', '名称', '主力净流入-净额', '大单净流入-净占比', '超大单净流入-净占比', '涨跌幅', '主力净流入-净占比', ]]
-    data.to_csv('./up.csv')
+    data.to_csv('../data/up.csv')
     list.append(data)
     return list
 
 
 def optionalStock(data):
     list = []
-    optionalStock = pd.read_csv('./optional_stock.csv')
-    todayOptionalStock = pd.merge(optionalStock,data,on=['代码'])
+    optionalStock = pd.read_csv('../data/optional_stock.csv')
+    todayOptionalStock = pd.merge(optionalStock, data, on=['代码'])
     todayOptionalStock = todayOptionalStock[['代码', '名称', '主力净流入-净额', '大单净流入-净占比', '超大单净流入-净占比', '涨跌幅', '主力净流入-净占比', ]]
     list.append(todayOptionalStock)
     return list
+
 
 def executeTodayAk():
     # 上午11点半到1点不查询
@@ -77,17 +79,10 @@ def isNotify():
 
 if __name__ == '__main__':
     settings.init()
-    executeTodayAk()
-    # pd.set_option('display.float_format', lambda x: '%.2f' % x)
     # executeTodayAk()
-    # print(isNotify())
-    # executeTodayAk()
-    # index = pd.date_range('1/1/2000', periods=8)
-    # data = pd.DataFrame(np.random.randn(8, 3), index=index,
-    #                     columns=['A', 'B', 'C'])
-    # print(data)
-    # print(data.sum())
-
-    # df = pd.DataFrame({
-    #     'one': pd.Series(['001122'], index=[1])}).to_csv('./optional_stock.csv')
-
+    pro = ts.pro_api(token=settings.TOKEN)
+    data = pro.stock_basic(exchange='', list_status='L', fields='ts_code,symbol,name,area,industry,list_date')
+    data.colum = ['序列','代码','名称','所在地域','所属行业','上市日期']
+    todayData = pd.read_csv('../data/todaydata.csv')
+    pd.merge(data,todayData,on = '代码')
+    data.to_csv('../data/all_stocks.csv')

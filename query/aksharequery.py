@@ -23,7 +23,7 @@ def queryJGTJ():
     data['接待机构数量'] = data['接待机构数量'].astype('int')
     data = data.sort_values('接待机构数量', ascending=False)
     data = data[['代码', '名称', '最新价', '涨跌幅', '接待日期', '公告日期', '接待机构数量']]
-    # data.to_csv('./JGTJ.csv')
+    # data.to_csv('../data/JGTJ.csv')
     list.append(data.to_csv())
     return list
 
@@ -44,7 +44,7 @@ def mainNetDaysPurchase():
     df1['主力净流入-净额'] = df1['主力净流入-净额'].astype('float64')
     df1 = df1.sort_values('主力净流入-净占比', ascending=False)
     df1 = df1[['代码', '名称', '主力净流入-净额', '大单净流入-净占比', '超大单净流入-净占比', '涨跌幅', '主力净流入-净占比', ]].head(30)
-    # df1.to_csv('./data.csv')
+    # df1.to_csv('../data/data.csv')
     list.append(df1)
     return list
 
