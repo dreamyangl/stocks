@@ -4,6 +4,8 @@ import sys
 import time
 import pandas as pd
 
+from query.basicdata import executeBasic
+
 curPath = os.path.abspath(os.path.dirname(__file__))
 rootPath = os.path.split(curPath)[0]
 sys.path.append(rootPath)
@@ -32,6 +34,7 @@ if __name__ == '__main__':
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(custom_stocks_streage)
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeAk)
     EXEC_TIME_SUSPEND = "08:30"
+    schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeBasic)
     schedule.every().days.at(EXEC_TIME_SUSPEND).do(execute)
     schedule.every(1).minutes.do(executeTodayAk)
     while True:
