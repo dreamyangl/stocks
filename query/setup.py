@@ -4,12 +4,11 @@ import sys
 import time
 import pandas as pd
 
-from query.basicdata import executeBasic
-
 curPath = os.path.abspath(os.path.dirname(__file__))
 rootPath = os.path.split(curPath)[0]
 sys.path.append(rootPath)
 import schedule
+from query.basicdata import executeBasic
 from query.aksharequery import executeAk
 from query.akTodaysharequery import executeTodayAk
 
