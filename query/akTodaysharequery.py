@@ -13,6 +13,7 @@ from query import util
 import pandas as pd
 import numpy as np
 
+
 def mergeInsty(data):
     groupCountData = data.groupby('所属行业').count()['序列']
     # print(groupCountData.columns)
@@ -21,13 +22,14 @@ def mergeInsty(data):
     finalData = pd.merge(data, groupCountData, on='所属行业')
     return finalData
 
+
 def mainNetInflow(data):
     list = []
     data = data.sort_values('主力净流入-净额', ascending=False)
     data = data.head(30)
     data = mergeInsty(data)
     data = data.sort_values('主力净流入-净额', ascending=False)
-    data = data[['代码', '名称', '主力净流入-净额', '大单净流入-净占比', '超大单净流入-净占比', '涨跌幅', '主力净流入-净占比', '所属行业','个数']]
+    data = data[['代码', '名称', '主力净流入-净额', '大单净流入-净占比', '超大单净流入-净占比', '涨跌幅', '主力净流入-净占比', '所属行业', '个数']]
     # data.to_csv('../data/todaydata.csv')
     list.append(data.to_csv())
     return list
@@ -35,10 +37,11 @@ def mainNetInflow(data):
 
 def up(data):
     list = []
+    data = data[(data['超大单净流入-净占比'] > 0)]
     data = data.sort_values('涨跌幅', ascending=False).head(20)
     data = mergeInsty(data)
     data = data.sort_values('超大单净流入-净占比', ascending=False)
-    data = data[['代码', '名称', '主力净流入-净额', '大单净流入-净占比', '超大单净流入-净占比', '涨跌幅', '主力净流入-净占比','所属行业', '个数']]
+    data = data[['代码', '名称', '主力净流入-净额', '大单净流入-净占比', '超大单净流入-净占比', '涨跌幅', '主力净流入-净占比', '所属行业', '个数']]
     # data.to_csv('../data/up.csv')
     list.append(data.to_csv())
     return list
