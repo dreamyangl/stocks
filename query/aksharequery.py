@@ -46,6 +46,7 @@ def query():
 def mainNetDaysPurchase():
     list = []
     basicData = pd.read_csv('./data/all_stocks.csv')
+    basicData = basicData[basicData['amount'] > 100000000]
     df1 = ak.stock_individual_fund_flow_rank(indicator="5日")
     df1 = df1.drop(df1[(df1['主力净流入-净额'] == "-")].index)
     df1 = df1[(df1['涨跌幅'] < 9) & (~df1['名称'].str.contains('ST'))]

@@ -37,6 +37,7 @@ def mainNetInflow(data):
 
 def up(data):
     list = []
+    data = data[data['nmc'] > 500000]
     data = data[(data['超大单净流入-净占比'] > 0)]
     data = data.sort_values('涨跌幅', ascending=False).head(20)
     data = mergeInsty(data)
