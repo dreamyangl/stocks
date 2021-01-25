@@ -49,7 +49,7 @@ def up(data):
 
 def optionalStock(data):
     list = []
-    optionalStock = pd.read_csv('../data/optional_stock.csv')
+    optionalStock = pd.read_csv('./data/optional_stock.csv')
     data = pd.merge(optionalStock, data, on=['代码'])
     data = data[['代码', '名称', '主力净流入-净额', '大单净流入-净占比', '超大单净流入-净占比', '涨跌幅', '主力净流入-净占比']]
     list.append(data.to_csv())
@@ -63,7 +63,7 @@ def executeTodayAk():
     data = ak.stock_individual_fund_flow_rank(indicator="今日")
     data = data.drop(data[(data['主力净流入-净额'] == "-")].index)
     data = data[(data['涨跌幅'] < 9.5) & (~data['名称'].str.contains('ST'))]
-    basicData = pd.read_csv('../data/all_stocks.csv')
+    basicData = pd.read_csv('./data/all_stocks.csv')
     data['代码'] = data['代码'].astype('int64')
     data['主力净流入-净额'] = data['主力净流入-净额'].astype('float64')
     data['主力净流入-净占比'] = data['主力净流入-净占比'].astype('float64')
