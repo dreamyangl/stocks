@@ -65,11 +65,11 @@ class LimitUp:
         df = pd.DataFrame(data, columns=self.columns)
         filename = os.path.join(self.path, date + "_limit_up" + ".csv")
         df.to_csv(filename)
-        try:
-            df.to_sql(date, sqlite3.connect(os.path.join(os.path.dirname(__file__), 'db_limit_up.db')),
-                      if_exists='fail')
-        except Exception as e:
-            print(e)
+        # try:
+        #     df.to_sql(date, sqlite3.connect(os.path.join(os.path.dirname(__file__), 'db_limit_up.db')),
+        #               if_exists='fail')
+        # except Exception as e:
+        #     print(e)
 
     # 爬取、保存数据
     def crawlData(self, startDate, endDate):
