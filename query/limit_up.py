@@ -17,7 +17,7 @@ def limit_up():
     data = pd.read_csv('./data/limit_up.csv')
     data['涨停时间'] = pd.to_timedelta(data['涨停时间'])
     print(data.dtypes)
-    data = data[(data['所属概念'].str.contains('调研|预增|摘帽')) & (
+    data = data[(data['所属概念'].str.contains('调研|预增|摘帽|重组')) & (
         ~data['名称'].str.contains('ST'))]
     data = data.sort_values('换手率（%）', ascending=False)
     data = data[['代码', '名称', '涨停时间', '换手率（%）', '所属概念']]
