@@ -87,7 +87,7 @@ class LimitUp:
 
 if __name__ == '__main__':
     lu = LimitUp()
-    start = '20210125'
+    start = '20210126'
     end = datetime.datetime.strftime(datetime.datetime.now(), '%Y%m%d')
     if len(sys.argv) > 1:
         start = sys.argv[1]
