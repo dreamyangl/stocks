@@ -21,7 +21,7 @@ def limit_up():
         ~data['名称'].str.contains('ST'))]
     data = data.sort_values('换手率（%）', ascending=False)
     data = data[['代码', '名称', '涨停时间', '换手率（%）', '所属概念']]
-    list.append(data)
+    list.append(data.to_csv())
     data.to_csv('./data/limit_up.csv')
     return list
 
