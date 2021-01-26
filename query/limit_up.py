@@ -1,12 +1,20 @@
+from datetime import datetime
+
 import pandas as pd
 
 import settings
 import testnotice
+from query.testScrapy import LimitUp
 
 
 def limit_up():
     list = []
-    data = pd.read_csv('./data/20210126_limit_up.csv')
+    lu = LimitUp()
+    today = datetime.now().strftime('%Y%m%d')
+    start = today
+    end = today
+    lu.crawlData(start, end)
+    data = pd.read_csv('./data/limit_up.csv')
     data['涨停时间'] = pd.to_timedelta(data['涨停时间'])
     print(data.dtypes)
     data = data[(data['所属概念'].str.contains('调研|预增|摘帽')) & (
