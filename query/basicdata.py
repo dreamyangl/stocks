@@ -22,7 +22,7 @@ def queryAll():
     data1.columns = ['序列', '代码', '所在地域', '所属行业', '上市日期']
     data1.to_csv('./data/all_stocks.csv')
     data1 = pd.read_csv('./data/all_stocks.csv')
-    data.merge(data1,on='代码').to_csv('./data/all_stocks.csv')
+    data.merge(data1, on='代码').to_csv('./data/all_stocks.csv')
     list.append('查询成功')
     return list
 
@@ -41,8 +41,8 @@ def executeBasic():
 if __name__ == '__main__':
     # queryJGTJ()
     settings.init()
-    # executeBasic()
-    data = pd.read_csv('./data/today_stocks.csv')
-    data1 = pd.read_csv('./data/all_stocks.csv')
-    print(data.dtypes)
-    print(data1.dtypes)
+    executeBasic()
+    # data = pd.read_csv('./data/today_stocks.csv')
+    # data1 = pd.read_csv('./data/all_stocks.csv')
+    # print(data.dtypes)
+    # print(data1.dtypes)
