@@ -11,6 +11,7 @@ import schedule
 from query.basicdata import executeBasic
 from query.aksharequery import executeAk
 from query.akTodaysharequery import executeTodayAk
+from query.limit_up import executeLimitUp
 
 from query.suspend import execute
 
@@ -33,6 +34,7 @@ if __name__ == '__main__':
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(custom_stocks_streage)
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeAk)
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeBasic)
+    schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeLimitUp())
     EXEC_TIME_SUSPEND = "08:30"
     schedule.every().days.at(EXEC_TIME_SUSPEND).do(execute)
     schedule.every(1).minutes.do(executeTodayAk)
