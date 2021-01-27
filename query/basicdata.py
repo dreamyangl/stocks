@@ -39,10 +39,8 @@ def executeBasic():
 
 
 if __name__ == '__main__':
-    # queryJGTJ()
-    settings.init()
-    executeBasic()
-    # data = pd.read_csv('./data/today_stocks.csv')
-    # data1 = pd.read_csv('./data/all_stocks.csv')
-    # print(data.dtypes)
-    # print(data1.dtypes)
+    # settings.init()
+    # executeBasic()
+
+    df = ts.get_today_all()
+    print(df)
