@@ -4,10 +4,12 @@ import sys
 import time
 import pandas as pd
 
+
 curPath = os.path.abspath(os.path.dirname(__file__))
 rootPath = os.path.split(curPath)[0]
 sys.path.append(rootPath)
 import schedule
+from query.today_limit_up import todayLimitUp
 from query.basicdata import executeBasic
 from query.aksharequery import executeAk
 from query.akTodaysharequery import executeTodayAk
@@ -36,6 +38,7 @@ if __name__ == '__main__':
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeBasic)
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeLimitUp())
     EXEC_TIME_SUSPEND = "08:30"
+    # schedule.every(2).minutes.do(todayLimitUp)
     schedule.every().days.at(EXEC_TIME_SUSPEND).do(execute)
     schedule.every(1).minutes.do(executeTodayAk)
     while True:
