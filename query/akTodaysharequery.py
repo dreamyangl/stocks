@@ -98,7 +98,18 @@ def isNotify():
 
 if __name__ == '__main__':
     settings.init()
-    executeTodayAk()
+    # executeTodayAk()
+
+    all_stocks = pd.read_csv('./data/all_stocks.csv')
+
+    plate_limit_up = pd.read_csv('./data/plate_limit_up.csv')
+    print(plate_limit_up)
+    # all_stocks['count'] = all_stocks.apply(lambda row: plate_limit_up[plate_limit_up['所属行业'] == row.loc['所属行业']]['count'], axis=1)
+    # all_stocks = pd.merge(all_stocks, plate_limit_up, on='所属行业',how='left')
+    # # all_stocks = all_stocks.fillna(0)
+    # all_stocks['count'].astype('str')
+    # all_stocks.to_csv('./data/test.csv')
+    # print(all_stocks)
     # print(isNotify())
 
     # basicData = pd.read_csv('../data/all_stocks.csv')

@@ -14,16 +14,19 @@ def todayLimitUp():
     start = today
     end = today
     lu.crawlData(start, end)
-    limitUpData = pd.read_csv('./data/limit_up.csv')
+    try:
+        limitUpData = pd.read_csv('./data/limit_up.csv')
+    except Exception as e:
+        return list
     if (pd.DataFrame(limitUpData).empty):
-        return
+        return list
     limitUpData = limitUpData[(~limitUpData['名称'].str.contains('ST'))]
     allStockData = pd.read_csv('./data/all_stocks.csv')
     data = limitUpData.merge(allStockData, on='代码')
+    data.to_csv('./data/limit_up_merge_data')
     groupData = data.groupby('所属行业')
     data = groupData['成交额（元）'].agg(['count']).sort_values('count', ascending=False)
     # data = groupData.agg({'成交额（元）': ['count', 'sum'], '涨停时间': 'min'})
-    # data.to_csv('./data/plate_limit_up.csv')
     list.append(data.to_csv())
     return list
 
