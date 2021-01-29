@@ -22,13 +22,15 @@ def is_today(target_date):
     return final
 
 # 生成几天内的日期
-def days(day):
+def createDays(day, format=None):
+    if not format:
+        format = '%Y-%m-%d'
     list = []
     for i in range(day):
        time = datetime.date.today()-datetime.timedelta(i)
-       list.append(time.strftime("%Y-%m-%d"))
+       list.append(time.strftime(format))
     return list
 
 if __name__ == '__main__':
-    for i in days(5):
+    for i in createDays(1, '%Y%m%d'):
         print(i)

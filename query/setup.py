@@ -4,6 +4,8 @@ import sys
 import time
 import pandas as pd
 
+from query.down_limit_up import executeDownlimitUp
+from query.up_limit_up import executeUplimitUp
 
 curPath = os.path.abspath(os.path.dirname(__file__))
 rootPath = os.path.split(curPath)[0]
@@ -13,7 +15,6 @@ from query.today_limit_up import executeTodayLimitUp
 from query.basicdata import executeBasic
 from query.aksharequery import executeAk
 from query.akTodaysharequery import executeTodayAk
-from query.limit_up import executeLimitUp
 
 from query.suspend import execute
 
@@ -36,7 +37,8 @@ if __name__ == '__main__':
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(custom_stocks_streage)
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeAk)
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeBasic)
-    schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeLimitUp)
+    schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeUplimitUp)
+    schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeDownlimitUp)
     EXEC_TIME_SUSPEND = "08:30"
     schedule.every().days.at(EXEC_TIME_SUSPEND).do(execute)
     schedule.every(2).minutes.do(executeTodayLimitUp)

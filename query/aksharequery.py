@@ -25,7 +25,7 @@ def mergeInsty(data):
 def queryJGTJ():
     list = []
     stock_em_jgdy_tj_df = ak.stock_em_jgdy_tj()
-    days = util.days(3)
+    days = util.createDays(3)
     data = stock_em_jgdy_tj_df[stock_em_jgdy_tj_df['接待日期'].isin(days)]
     data['接待机构数量'] = data['接待机构数量'].astype('int')
     data = data.sort_values('接待机构数量', ascending=False)
