@@ -110,4 +110,4 @@ def executeDownlimitUp():
 
 if __name__ == '__main__':
     settings.init()
-    execute()
+    executeDownlimitUp()
