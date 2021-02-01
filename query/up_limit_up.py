@@ -110,4 +110,8 @@ def executeUplimitUp():
 
 if __name__ == '__main__':
     settings.init()
-    executeUplimitUp()
+    # executeUplimitUp()
+    limitUp = pd.read_csv('./data/up_limit_up.csv')
+    optionalStock = pd.read_csv('./data/optional_stock.csv')
+    data = pd.concat([limitUp['代码'],optionalStock['代码']],axis=0)
+    data.to_csv('./data/optional_stock.csv')
