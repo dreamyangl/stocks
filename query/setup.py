@@ -38,7 +38,6 @@ if __name__ == '__main__':
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeAk)
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeBasic)
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeUplimitUp)
-    schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeDownlimitUp)
     EXEC_TIME_SUSPEND = "08:30"
     schedule.every().days.at(EXEC_TIME_SUSPEND).do(execute)
     schedule.every(2).minutes.do(executeTodayLimitUp)
@@ -47,6 +46,9 @@ if __name__ == '__main__':
         schedule.run_pending()
         time.sleep(30)
     # custom_stocks_streage()
-    # execute()
     # executeAk()
+    # execute()
+    # executeBasic()
+    # executeUplimitUp()
+    # execute()
     # executeTodayAk()

@@ -61,7 +61,10 @@ def executeTodayLimitUp():
 
 if __name__ == '__main__':
     settings.init()
-    executeTodayLimitUp()
+    # executeTodayLimitUp()
+    allStockData = pd.read_csv('./data/all_stocks.csv')
+    print(allStockData[['代码','volume']])
+
 
     # df = pd.DataFrame(
     #     {
