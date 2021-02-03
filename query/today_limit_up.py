@@ -38,7 +38,7 @@ def isNotify():
     amStartTime = datetime.strptime(str(datetime.now().date()) + '11:30', '%Y-%m-%d%H:%M')
     amEndTime = datetime.strptime(str(datetime.now().date()) + '13:00', '%Y-%m-%d%H:%M')
     pmStartTime = datetime.strptime(str(datetime.now().date()) + '15:00', '%Y-%m-%d%H:%M')
-    pmEndTime = datetime.strptime(str(datetime.now().date()) + '9:15', '%Y-%m-%d%H:%M')
+    pmEndTime = datetime.strptime(str(datetime.now().date()) + '9:30', '%Y-%m-%d%H:%M')
     if now > amStartTime and now < amEndTime:
         return False
     if now > pmStartTime or now < pmEndTime:
