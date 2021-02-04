@@ -11,7 +11,7 @@ def notify(msg=None, type='TEXT'):
     dd = DingDing(
         webhook='https://oapi.dingtalk.com/robot/send?access_token=4f7745a212c76d23f3b65150e19669fa3335a1640f7a1226f2c1f061ed03db22')
     strategies = {
-        'TEXT': lambda msg: print(dd.Send_Text_Msg(Content=msg+'stocks', isAtAll=True)),
+        'TEXT': lambda msg: print(dd.Send_Text_Msg(Content=msg+'stocks')),
         'LINK': lambda msg: print(
             type + ":" + dd.Send_Link_Msg(Content='stocks', Title=msg, MsgUrl='https://www.baidu.com',
                                           PicUrl='https://cn.bing.com/images/search?q=outgoing%e6%9c%ba%e5%99%a8%e4%ba%ba&id=FEE700371845D9386738AAAA51DCC43DC54911AA&FORM=IQFRBA')),
