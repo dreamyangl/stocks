@@ -33,7 +33,7 @@ if __name__ == '__main__':
     # pd.set_option('display.max_rows', None)
     settings.init()
     pd.set_option('display.float_format', lambda x: '%.2f' % x)
-    EXEC_TIME_MECHANISMINFO = "21:00"
+    EXEC_TIME_MECHANISMINFO = "19:10"
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(custom_stocks_streage)
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeAk)
     schedule.every().days.at(EXEC_TIME_MECHANISMINFO).do(executeBasic)
